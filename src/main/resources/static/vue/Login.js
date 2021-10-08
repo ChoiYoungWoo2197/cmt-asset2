@@ -13,7 +13,7 @@ Vue.component('login', {
                                 </div>
                             </div>
                             <div class="card-body p-5">
-                                <form>
+                                <form action="/login-post" method="post">
                                     <div class="row">
                                         <div class="form-group col-md-12 mb-0">
                                             <div class="input-group">
@@ -36,7 +36,7 @@ Vue.component('login', {
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-lg btn-primary btn-block mb-4" @click="clickLogin">LOGIN</button>
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">LOGIN</button>
                                         </div>
                                     </div>
                                 </form>
