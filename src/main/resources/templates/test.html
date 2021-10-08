@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
+    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/materialdesignicons.min.css">
+    <link id="sleek-css" rel="stylesheet" href="/css/sleek.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jsTree/style.min.css" />
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/sleek.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jstree.min.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <!--Common-->
+    <script src="/vue/common/CreateModal.js"></script>
+
+    <!--Organization-->
+    <script src="/vue/organization/JsTree.js"></script>
+    <script src="/vue/organization/Organization.js"></script>
+    <script src="/vue/organization/Read.js"></script>
+    <script src="/vue/organization/Update.js"></script>
+    <script src="/vue/organization/employee/Create.js"></script>
+
+    <!--Category-->
+    <script src="/vue/category/Category.js"></script>
+    <script src="/vue/category/CategoryStandard.js"></script>
+    <script src="/vue/category/JsTree.js"></script>
+    <script src="/vue/category/Read.js"></script>
+    <script src="/vue/category/Update.js"></script>
+
+    <!--Company-->
+    <script src="/vue/company/Company.js"></script>
+    <script src="/vue/company/CompanyManager.js"></script>
+    <script src="/vue/company/Create.js"></script>
+
+    <script src="/vue/company/List.js"></script>
+    <script src="/vue/company/Read.js"></script>
+    <script src="/vue/company/Update.js"></script>
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+
+<div class="mobile-sticky-body-overlay"></div>
+
+<div class="wrapper">
+
+    <!--
+  ====================================
+  ——— LEFT SIDEBAR WITH FOOTER
+  =====================================
+  -->
+    <aside class="left-sidebar bg-sidebar">
+        <div id="sidebar" class="sidebar sidebar-with-footer">
+            <!-- Aplication Brand -->
+            <div class="app-brand">
+                <a href="asset.html" class="pl-2 pr-2">
+<!--                    <img src="resources/img/cmt_logo.svg" width="100%" style="min-width: 100%">-->
+                </a>
+            </div>
+            <!-- begin sidebar scrollbar -->
+            <div class="sidebar-scrollbar">
+
+                <!-- sidebar menu -->
+                <ul class="nav sidebar-inner" id="sidebar-menu">
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="employee.html">
+                            <i class="mdi mdi-account-outline"></i>
+                            <span class="nav-text">직원</span>
+                        </a>
+                    </li>
+
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="authority.html">
+                            <i class="mdi mdi-lock-outline"></i>
+                            <span class="nav-text">권한</span>
+                        </a>
+                    </li>
+
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="department.html">
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <span class="nav-text">부서</span>
+                        </a>
+                    </li>
+
+                    <li class="has-sub active expand">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#asset"
+                           aria-expanded="false" aria-controls="asset">
+                            <i class="mdi mdi-monitor-dashboard"></i>
+                            <span class="nav-text">자산</span> <b class="caret"></b>
+                        </a>
+                        <ul class="collapse show" id="asset" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                                <li class="section-title">자산</li>
+                                <li>
+                                    <a class="sidenav-item-link" href="asset.html">
+                                        <span class="nav-text">자산정보</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidenav-item-link" href="asset-use.html">
+                                        <span class="nav-text">자산사용현황</span>
+                                    </a>
+                                </li>
+                                <li class="section-title">업체</li>
+                                <li class="active">
+                                    <a class="sidenav-item-link" href="company.html">
+                                        <span class="nav-text">렌탈/구매 업체</span>
+                                    </a>
+                                </li>
+                                <li class="section-title">카테고리</li>
+                                <li>
+                                    <a class="sidenav-item-link" href="category.html">
+                                        <span class="nav-text">카테고리</span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+
+
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="main-header" id="header">
+            <nav class="navbar navbar-static-top navbar-expand-lg">
+                <!-- Sidebar toggle button -->
+                <button id="sidebar-toggler" class="sidebar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+
+                <!-- search form -->
+                <div class="search-form d-none d-lg-inline-block">
+                    <!--<div class="input-group">
+                      <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="mdi mdi-magnify"></i>
+                      </button>
+                      <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
+                        autofocus autocomplete="off" />
+                    </div>
+                    <div id="search-results-container">
+                      <ul id="search-results"></ul>
+                    </div>-->
+                </div>
+
+                <div class="navbar-right ">
+                    <ul>
+                        <li class="mr-2 text-right">
+                            <b>김관리</b> 관리자님
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <!-- User Account -->
+                        <!--<li class="dropdown user-menu">
+                          <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            &lt;!&ndash;<img src="resources/img/user/user.png" class="user-image" alt="User Image" />&ndash;&gt;
+                            <span class="d-none d-lg-inline-block">김관리</span>
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            &lt;!&ndash; User image &ndash;&gt;
+                            <li class="dropdown-header">
+                              &lt;!&ndash;<img src="resources/img/user/user.png" class="img-circle" alt="User Image" />&ndash;&gt;
+                              <div class="d-inline-block">
+                                김관리 <small class="pt-1">kimAdmin@gmail.com</small>
+                              </div>
+                            </li>
+                            <li>
+                              <a href="profile.html">
+                                <i class="mdi mdi-account"></i> My Profile
+                              </a>
+                            </li>
+                            &lt;!&ndash;<li>
+                              <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
+                            </li>&ndash;&gt;
+                            <li class="dropdown-footer">
+                              <a href="login.html"> <i class="mdi mdi-logout"></i> Log Out </a>
+                            </li>
+                          </ul>
+                        </li>-->
+                        <li class="mr-2">
+                            <a href="my-profile.html" style="color: #8a909d">
+                                <i class="mdi mdi-account"></i> My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="login.html" style="color: #8a909d">
+                                <i class="mdi mdi-logout"></i> Log Out </a>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="breadcrumb-wrapper">
+                    <h1 class="mb-1">렌탈/구매 업체</h1>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb p-0">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <span class="mdi mdi-home"></span>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">자산</li>
+                            <li class="breadcrumb-item active" aria-current="page">렌탈/구매 업체</li>
+                        </ol>
+                    </nav>
+
+                </div>
+
+                <div class="card card-default">
+                    <!--<div class="card-header card-header-border-bottom">
+                      <h2>직원 목록</h2>
+                    </div>-->
+                    <div class="card-body">
+                        <!--<div class="mb-5 p-3" style="border: 1px solid #ced4da">
+                            <form>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group row mb-0">
+                                            <label class="col-sm-3 pr-0" style="color: #8a909d">사용유무</label>
+                                            <div class="col-sm-9 pl-0">
+                                                <div class="input-group input-group-sm mb-0">
+                                                    <select class="form-control p-0" id="">
+                                                        <option>전체</option>
+                                                        <option>사용</option>
+                                                        <option>미사용</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row mb-0">
+                                            <label class="col-sm-3 pr-0" style="color: #8a909d">업체명</label>
+                                            <div class="col-sm-9 pl-0">
+                                                <div class="input-group input-group-sm mb-0">
+                                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn-sm btn-primary" style="width: 100%"><i class="mdi mdi-magnify"></i>검색</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>-->
+
+                        <div class="mb-5 pt-3 pl-3 pr-3 pb-0" style="border: 1px solid #ced4da">
+                            <form>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label style="color: #8a909d; font-size: revert">사용유무</label>
+                                        <div class="input-group input-group-sm">
+                                            <select class="form-control p-0" id="">
+                                                <option>전체</option>
+                                                <option>사용</option>
+                                                <option>미사용</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <label style="color: #8a909d; font-size: revert">업체명</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <label style="color: white">검색</label>
+                                        <button type="button" class="btn-sm btn-primary" style="width: 100%"><i class="mdi mdi-magnify"></i>검색</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="text-right mb-3">
+                            <button type="button" class="btn-sm btn-primary" id="insertEmployee" data-toggle="modal" data-target="#insertAssetForm">
+                                <i class="mdi mdi-plus"></i>등록
+                            </button>
+                            <button type="button" class="btn-sm btn-primary" id="deleteEmployee">
+                                <i class="mdi mdi-minus"></i>삭제
+                            </button>
+                        </div>
+
+                        <!-- Form Modal -->
+                        <div class="modal fade" id="insertAssetForm" tabindex="-1" role="dialog" aria-labelledby="insertAssetFormTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="insertAssetFormTitle">업체 등록</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">업체명 <small class="text-danger">*</small></label>
+                                                <input type="text" class="form-control" id="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">전화번호</label>
+                                                <input type="tel" class="form-control" id="phone">
+                                            </div>
+                                            <!--<div class="form-group">
+                                                <label for="name" style="font-size: revert">담당자</label>
+                                                <div class="row" style="border: 1px solid #e5e9f2; margin: 0.25rem; border-radius: 0.25rem">
+                                                    <div class="col-1">
+                                                        <button type="button"><i class="mdi mdi-plus"></i></button>
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <div class="row pt-2 pb-2">
+                                                            <div class="col-12">
+                                                                <input type="text" class="form-control" id="rentalManageName" placeholder="담당자명">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <input type="tel" class="form-control" id="rentalManagePhone" placeholder="담당자 전화번호">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <input type="tel" class="form-control" id="rentalManagePhone" placeholder="담당자 직통번호">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">담당자</label>
+                                                <div class="row" style="border: 1px solid #e5e9f2; margin: 0.25rem; border-radius: 0.25rem; background-color: #e5e9f2">
+                                                    <div class="col-1">
+                                                        <button type="button" class="mt-30"><i class="mdi mdi-plus"></i></button>
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <div class="row pt-2 pb-2">
+                                                            <div class="col-4 pt-2 pb-2">
+                                                                <label for="name" style="font-size: revert">담당자명 <small class="text-danger"></small></label>
+                                                                <input type="text" class="form-control" id="name">
+                                                            </div>
+                                                            <div class="col-4 pt-2 pb-2">
+                                                                <label for="name" style="font-size: revert">담당자 전화번호 <small class="text-danger"></small></label>
+                                                                <input type="tel" class="form-control" id="name">
+                                                            </div>
+                                                            <div class="col-4 pt-2 pb-2">
+                                                                <label for="name" style="font-size: revert">담당자 직통번호 <small class="text-danger"></small></label>
+                                                                <input type="tel" class="form-control" id="name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">비고</label>
+                                                <textarea class="form-control" id="remark"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-size: revert">사용유무 <small class="text-danger">*</small></label>
+                                                <div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="useY" name="use" class="custom-control-input" checked>
+                                                        <label class="custom-control-label" for="useY">사용</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="useN" name="use" class="custom-control-input">
+                                                        <label class="custom-control-label" for="useN">미사용</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                        <button type="button" class="btn btn-primary">등록</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-hover" id="departmentTable">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th scope="col">#</th>
+                                <th scope="col">업체명</th>
+                                <th scope="col">전화번호</th>
+                                <th scope="col">담당자정보</th>
+                                <th scope="col">비고</th>
+                                <th scope="col">사용유무</th>
+                                <th scope="col">등록일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td scope="row">1</td>
+                                <td>AJ렌탈</td>
+                                <td>1588-0053</td>
+                                <td></td>
+                                <td>서울특별시 송파구 정의로 8길 9, AJ빌딩</td>
+                                <td>사용</td>
+                                <td>2021년 6월 20일</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td scope="row">2</td>
+                                <td>롯데렌탈</td>
+                                <td></td>
+                                <td>김렌탈 : 010-1111-2222 <br> 박렌탈 : 010-1111-3333</td>
+                                <td></td>
+                                <td>사용</td>
+                                <td>2021년 6월 18일</td>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td scope="row">3</td>
+                                <td>이지렌탈</td>
+                                <td>1588-2230</td>
+                                <td></td>
+                                <td></td>
+                                <td>사용</td>
+                                <td>2021년 6월 04일</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td scope="row">4</td>
+                                <td>A회사</td>
+                                <td>1588-0053</td>
+                                <td>이자산 : 010-1111-4444 <br> 최자산 : 010-1111-5555 / 053-111-5555</td>
+                                <td></td>
+                                <td>사용</td>
+                                <td>2021년 6월 04일</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td scope="row">5</td>
+                                <td>B회사</td>
+                                <td>1566-1234</td>
+                                <td></td>
+                                <td>구매업체 비고란입니다.</td>
+                                <td>사용</td>
+                                <td>2021년 6월 03일</td>
+                            </tbody>
+                        </table>
+
+                        <!--Modal Btn-->
+                        <button type="button" class="btn btn-primary d-none" id="updateEmployeeBtn" data-toggle="modal" data-target="#updateDepartmentForm">
+                            <i class="mdi mdi-plus-box-outline"></i>수정
+                        </button>
+                        <!-- Form Modal -->
+                        <div class="modal fade" id="updateDepartmentForm" tabindex="-1" role="dialog" aria-labelledby="updateDepartmentFormTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateDepartmentFormTitle">업체 수정</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">업체명 <small class="text-danger">*</small></label>
+                                                <input type="text" class="form-control" id="name" value="AJ렌탈">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">전화번호</label>
+                                                <input type="tel" class="form-control" id="phone" value="1588-0533">
+                                            </div>
+                                            <!--<div class="form-group">
+                                                <label for="name" style="font-size: revert">담당자</label>
+                                                <div class="row" style="border: 1px solid #e5e9f2; margin: 0.25rem; border-radius: 0.25rem">
+                                                    <div class="col-1">
+                                                        <button type="button"><i class="mdi mdi-plus"></i></button>
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <div class="row pt-2 pb-2">
+                                                            <div class="col-12">
+                                                                <input type="text" class="form-control" id="rentalManageName" placeholder="담당자명">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <input type="tel" class="form-control" id="rentalManagePhone" placeholder="담당자 전화번호">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <input type="tel" class="form-control" id="rentalManagePhone" placeholder="담당자 직통번호">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">담당자</label>
+                                                <div class="row" style="border: 1px solid #e5e9f2; margin: 0.25rem; border-radius: 0.25rem; background-color: #e5e9f2">
+                                                    <div class="col-1">
+                                                        <button type="button" class="mt-30"><i class="mdi mdi-plus"></i></button>
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <div class="row pt-2 pb-2">
+                                                            <div class="col-4 pt-2 pb-2">
+                                                                <label for="name" style="font-size: revert">담당자명 <small class="text-danger"></small></label>
+                                                                <input type="text" class="form-control" id="name">
+                                                            </div>
+                                                            <div class="col-4 pt-2 pb-2">
+                                                                <label for="name" style="font-size: revert">담당자 전화번호 <small class="text-danger"></small></label>
+                                                                <input type="tel" class="form-control" id="name">
+                                                            </div>
+                                                            <div class="col-4 pt-2 pb-2">
+                                                                <label for="name" style="font-size: revert">담당자 직통번호 <small class="text-danger"></small></label>
+                                                                <input type="tel" class="form-control" id="name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name" style="font-size: revert">비고</label>
+                                                <textarea class="form-control" id="remark">서울특별시 송파구 정의로 8길 9, AJ빌딩</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-size: revert">사용유무 <small class="text-danger">*</small></label>
+                                                <div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="useY" name="use" class="custom-control-input" checked>
+                                                        <label class="custom-control-label" for="useY">사용</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="useN" name="use" class="custom-control-input">
+                                                        <label class="custom-control-label" for="useN">미사용</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                        <button type="button" class="btn btn-primary">수정</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div aria-label="Page navigation example" class="float-right" style="font-size: small">
+                            <ul class="pagination pagination-flat ">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true" class="mdi mdi-chevron-left"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item ">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true" class="mdi mdi-chevron-right"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--<body>
+    <div id="app">
+&lt;!&ndash;        <category></category>&ndash;&gt;
+        <organization></organization>
+&lt;!&ndash;        <company></company>&ndash;&gt;
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            components: {
+                // organizationJsTree
+            },
+            data: {
+
+            },
+
+        })
+    </script>
+</body>-->
+</html>

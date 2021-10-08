@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.cmtasset2.mapper.PermissionMapper">
+
+    <select id="getPermissions" resultType="Permission">
+        <!--
+        SELECT *
+        FROM permission
+        -->
+        <!--
+        SELECT
+            permissionKey,
+            parentKey,
+            GROUP_CONCAT(name) AS 'names',
+            GROUP_CONCAT(permissionKey) AS 'keys'
+        FROM permission
+        GROUP BY parentKey
+        -->
+        SELECT
+               p1.permissionKey,
+               p1.name,
+               GROUP_CONCAT(p2.name ORDER BY p2.permissionKey) AS 'childNames',
+               GROUP_CONCAT(p2.permissionKey ORDER BY p2.permissionKey) AS 'childKeys'
+        FROM permission p1
+            JOIN permission p2
+            ON p1.permissionKey = p2.parentKey
+        GROUP BY p1.permissionKey
+    </select>
+
+</mapper>

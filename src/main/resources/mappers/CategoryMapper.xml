@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.cmtasset2.mapper.CategoryMapper">
+
+    <select id="getCategorys" resultType="Category">
+        SELECT *
+        FROM category
+    </select>
+
+    <insert id="createCategory" parameterType="Category">
+        INSERT INTO
+            category (name, parentKey, depth, remark, useYn, createDate, createId)
+        VALUES (#{name}, #{parentKey}, #{depth}, #{remark}, #{useYn}, #{createDate}, #{createId})
+    </insert>
+
+    <select id="getCategory" resultType="Category" parameterType="int">
+        SELECT
+            c1.categoryKey,
+            c1.name,
+            c1.parentKey,
+            c2.name AS parentName,
+            c1.depth,
+            c1.remark,
+            c1.useYn,
+            c1.createDate,
+            date_format(c1.createDate, '%Y년 %m월 %d일') AS createDateFormat
+        FROM category AS c1
+            LEFT JOIN category AS c2
+            ON c1.parentKey = c2.categoryKey
+        WHERE c1.categoryKey = #{categoryKey}
+    </select>
+
+    <update id="updateCategory" parameterType="Category">
+        UPDATE category
+        SET
+            name = #{name},
+            <!--parentKey = #{parentKey},
+            depth = #{depth},-->
+            remark = #{remark},
+            useYn = #{useYn},
+            updateDate = #{updateDate},
+            updateId = #{updateId}
+        WHERE categoryKey = #{categoryKey}
+    </update>
+
+    <delete id="deleteCategory" parameterType="int">
+        DELETE FROM category
+        WHERE categoryKey = #{categoryKey}
+    </delete>
+
+    <select id="getChildCategorys" resultType="Category" parameterType="int">
+        SELECT *
+        FROM category
+        WHERE parentKey = #{categoryKey}
+    </select>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.cmtasset2.mapper.CategoryStandardMapper">
+
+    <select id="getCategoryStandardsByCategoryKey" resultType="CategoryStandard" parameterType="int">
+        SELECT *
+        FROM category_standard
+        WHERE categoryKey = #{categoryKey}
+    </select>
+
+    <insert id="createCategoryStandard" parameterType="CategoryStandard">
+        INSERT INTO category_standard(categoryKey, name)
+        VALUES (#{categoryKey}, #{name})
+    </insert>
+
+    <update id="updateCategoryStandard" parameterType="CategoryStandard">
+        UPDATE category_standard
+        SET
+            name = #{name}
+        WHERE categoryStandardKey = #{categoryStandardKey}
+    </update>
+
+    <delete id="deleteCategoryStandard" parameterType="int">
+        DELETE FROM category_standard
+        WHERE categoryStandardKey = #{categoryStandardKey}
+    </delete>
+
+</mapper>

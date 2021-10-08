@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
+    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/materialdesignicons.min.css">
+    <link id="sleek-css" rel="stylesheet" href="/css/sleek.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jsTree/style.min.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/sleek.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jstree.min.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <!--Common-->
+    <script src="/vue/Login.js"></script>
+    <script src="/vue/common/CreateModal.js"></script>
+
+    <!--Organization-->
+    <script src="/vue/organization/JsTree.js"></script>
+    <script src="/vue/organization/Organization.js"></script>
+    <script src="/vue/organization/department/Read.js"></script>
+    <script src="/vue/organization/department/Update.js"></script>
+    <script src="/vue/organization/employee/Create.js"></script>
+    <script src="/vue/organization/employee/CreateModal.js"></script>
+    <script src="/vue/organization/employee/Read.js"></script>
+    <script src="/vue/organization/employee/Update.js"></script>
+
+    <!--Category-->
+    <script src="/vue/category/Category.js"></script>
+    <script src="/vue/category/CategoryStandard.js"></script>
+    <script src="/vue/category/JsTree.js"></script>
+    <script src="/vue/category/Read.js"></script>
+    <script src="/vue/category/Update.js"></script>
+
+    <!--Company-->
+    <script src="/vue/company/Company.js"></script>
+    <script src="/vue/company/CompanyManager.js"></script>
+    <script src="/vue/company/Create.js"></script>
+    <script src="/vue/company/CreateModal.js"></script>
+    <script src="/vue/company/List.js"></script>
+    <script src="/vue/company/Read.js"></script>
+    <script src="/vue/company/Update.js"></script>
+
+    <!--Authority-->
+    <script src="/vue/authority/Authority.js"></script>
+    <script src="/vue/authority/Create.js"></script>
+    <script src="/vue/authority/CreateModal.js"></script>
+    <script src="/vue/authority/List.js"></script>
+    <script src="/vue/authority/Read.js"></script>
+    <script src="/vue/authority/Update.js"></script>
+    <script src="/vue/authority/Permission.js"></script>
+</head>
+
+<body>
+    <div id="app">
+<!--        <category></category>-->
+<!--        <organization></organization>-->
+<!--        <company></company>-->
+        <authority></authority>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            components: {
+                // organizationJsTree
+            },
+            data: {
+
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.cmtasset2.mapper.CompanyMapper">
+
+    <select id="getCompanys" resultType="Company">
+        SELECT *
+        FROM company
+    </select>
+
+    <insert id="createCompany" parameterType="Company">
+        INSERT INTO
+            company (division, name, phone, remark, useYn, createDate, createId)
+        VALUES (#{division}, #{name}, #{phone}, #{remark}, #{useYn}, #{createDate}, #{createId})
+    </insert>
+
+    <select id="getCompany" resultType="Company" parameterType="int">
+        SELECT *
+        FROM company
+        WHERE companyKey = #{companyKey}
+    </select>
+
+    <update id="updateCompany" parameterType="Company">
+        UPDATE company
+        SET
+            division = #{division},
+            name = #{name},
+            phone = #{phone},
+            remark = #{remark},
+            useYn = #{useYn},
+            updateDate = #{updateDate},
+            updateId = #{updateId}
+        WHERE companyKey = #{companyKey}
+    </update>
+
+    <update id="deleteCompany" parameterType="int">
+        DELETE FROM company
+        WHERE companyKey = #{companyKey}
+    </update>
+
+</mapper>
