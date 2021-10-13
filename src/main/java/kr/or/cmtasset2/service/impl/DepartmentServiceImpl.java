@@ -6,6 +6,8 @@ import kr.or.cmtasset2.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -25,8 +27,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartment(int departmentKey) {
-        return departmentMapper.getDepartment(departmentKey);
+    public Department getDepartment(String code) {
+        return departmentMapper.getDepartment(code);
     }
 
     @Override
@@ -35,13 +37,41 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void deleteDepartment(int departmentKey) {
-        departmentMapper.deleteDepartment(departmentKey);
+    public void deleteDepartment(String code) {
+        departmentMapper.deleteDepartment(code);
     }
 
     @Override
-    public List<Department> getChildDepartments(int departmentKey) {
-        return departmentMapper.getChildDepartments(departmentKey);
+    public List<Department> getChildDepartments(String code) {
+        return departmentMapper.getChildDepartments(code);
+    }
+
+    @Override
+    public Collection<Department> fileUpload(Collection<Department> departments) {
+        Collection<Department> departments1 = new ArrayList<>();
+        for(Department department : departments) {
+            if(department.getCode().equals("") == true || department.getCode() == null) {
+                continue;
+            }
+
+            Department isExistDepartment = getDepartment(department.getCode());
+            Department isExistParentDepartment = department.getParentCode().equals("") == false ? getDepartment(department.getParentCode()) : null;
+            if(isExistDepartment == null) {
+                if(department.getParentCode().equals("") == true
+                        || (isExistParentDepartment != null && department.getParentCode().equals("") == false)) {
+                    createDepartment(department);
+                    departments1.add(department);
+                }
+            } else {
+                if(department.getParentCode().equals("") == true
+                        || (isExistParentDepartment != null && department.getParentCode().equals("") == false)) {
+                    updateDepartment(department);
+                    departments1.add(department);
+                }
+            }
+        }
+
+        return departments1;
     }
 
 }

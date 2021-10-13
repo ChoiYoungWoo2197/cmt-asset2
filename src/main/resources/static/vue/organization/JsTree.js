@@ -56,8 +56,8 @@ Vue.component('organization-jstree', {
 
                             dataObj.forEach((data) => {
                                 const obj = {
-                                    "id": data.departmentKey,
-                                    "parent": data.parentKey,
+                                    "id": data.code,
+                                    "parent": !data.parentCode ? "0" : data.parentCode,
                                     "text": data.name,
                                     "type": "department",
                                     "a_attr" : {
@@ -115,7 +115,7 @@ Vue.component('organization-jstree', {
                                     "label" : "등록",
                                     "action" : function () {
                                         node = tree.jstree(true).create_node(node, {
-                                            "text" : "부서명",
+                                            "text" : "부서코드",
                                         });
 
                                         tree.jstree(true).edit(node);
@@ -130,10 +130,12 @@ Vue.component('organization-jstree', {
             .on("rename_node.jstree", function (event, data) {
                 const node = data.node;
 
+                console.log(node)
+
                 const obj = {
+                    code: node.text,
                     name: node.text,
-                    parentKey: node.parent,
-                    depth: node.parents.length - 1,
+                    parentCode: node.parent === "0" ? null : node.parent,
                     remark : "",
                     useYn : "Y"
                 }
@@ -146,10 +148,11 @@ Vue.component('organization-jstree', {
                     data: obj,
                     // dataType: "json",
                     success: function (data) {
-                        console.log("success")
-                        console.log(data);
-
-                        $("#jsTree").jstree(true).refresh();
+                        if(data === "duplicate") {
+                            $("#jsTree").jstree(true).edit(node);
+                        } else if(data === "success") {
+                            $("#jsTree").jstree(true).refresh();
+                        }
                     },
                     error: function (data) {
                         console.log(data)
@@ -226,12 +229,12 @@ Vue.component('organization-jstree', {
                 }
             })
         },*/
-        getEmployeesInDepartmentData(departmentKey) {
+        getEmployeesInDepartmentData(departmentCode) {
             const vm = this;
             const jsTree = $("#jsTree");
 
             $.ajax({
-                url: "/employee/department="+departmentKey,
+                url: "/employee/department="+departmentCode,
                 type: "get",
                 dataType: "json",
                 success: function (data) {
@@ -242,15 +245,15 @@ Vue.component('organization-jstree', {
                     data.forEach(item => {
                         const obj = {
                             "id": item.id,
-                            "parent": departmentKey,
+                            "parent": departmentCode,
                             "text": item.name,
                             "type": "employee"
                         }
 
                         datas.push(obj);
 
-                        jsTree.jstree("create_node", departmentKey, obj, "last");
-                        jsTree.jstree("open_node", departmentKey);
+                        jsTree.jstree("create_node", departmentCode, obj, "last");
+                        jsTree.jstree("open_node", departmentCode);
                     })
 
                     vm.employees = datas;
@@ -267,6 +270,35 @@ Vue.component('organization-jstree', {
         },
         refreshJsTreeData() {
             $("#jsTree").jstree(true).refresh();
+        },
+        createDepartmentByFile(data) {
+            // console.log('createDepartmentByFile', data)
+            let departments = [];
+            data.forEach((department, index) => {
+                if(index !== 0) {
+                    departments.push({
+                        code: department[0],
+                        name: department[0],
+                        parentCode: !department[3]? '' : department[3],
+                        remark : !department[1]? '' : department[1],
+                        useYn : !department[2]? '' : department[2]
+                    });
+                }
+            })
+
+            $.ajax({
+                url: "/department/file-upload",
+                type: "post",
+                data: JSON.stringify(departments),
+                contentType: "application/json",
+                success: function (data) {
+                    // console.log(data);
+                    $("#jsTree").jstree(true).refresh();
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+            })
         }
     }
 })

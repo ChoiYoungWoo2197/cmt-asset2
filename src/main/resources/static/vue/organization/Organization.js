@@ -1,15 +1,17 @@
 Vue.component('organization', {
     template :`
         <div>
-            <div>
+            <div class="row">
                 <employee-create-modal ref="createEmployeeModal"></employee-create-modal>
+                <file-upload-modal :p-title="'부서'" @completeFileUpload="handleCompleteFileUploadByDept"></file-upload-modal>
+<!--                <file-upload-modal :p-title="'직원'" @completeFileUpload="handleCompleteFileUploadByEmp"></file-upload-modal>-->
             </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-5">
                     <organization-jstree ref="organizationJstree" 
                                          @selectOrganization="handleSelectOrganization"/>
                 </div>
-                <div class="col-8">
+                <div class="col-7">
                     <ul class="nav nav-tabs nav-fill">
                         <li class="nav-item">
                             <a class="nav-link" href="#" @click="selectTab(readComponent)" 
@@ -78,6 +80,9 @@ Vue.component('organization', {
             this.selectDepartment = null;
             this.$refs.organizationJstree.refreshJsTreeData();
             this.activatedComponent = "department-read";
-        }
+        },
+        handleCompleteFileUploadByDept(data) {
+            this.$refs.organizationJstree.createDepartmentByFile(data);
+        },
     }
 })

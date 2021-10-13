@@ -11,11 +11,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class Department { // 부서
 
-    private int departmentKey;
+    private String code;
 
     private String name;
 
-    private int parentKey;
+    private String parentCode;
 
     private int depth;
 

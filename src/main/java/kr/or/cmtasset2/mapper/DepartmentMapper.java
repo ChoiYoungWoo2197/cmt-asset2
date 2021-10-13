@@ -12,12 +12,12 @@ public interface DepartmentMapper {
 
     void createDepartment(Department department);
 
-    Department getDepartment(int departmentKey);
+    Department getDepartment(String code);
 
     void updateDepartment(Department department);
 
-    void deleteDepartment(int departmentKey);
+    void deleteDepartment(String code);
 
-    List<Department> getChildDepartments(int departmentKey);
+    List<Department> getChildDepartments(String code);
 
 }

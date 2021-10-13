@@ -12,6 +12,10 @@ Vue.component('department-update', {
                         <input type="text" class="form-control" id="parentName" v-model="parentName" readonly>
                     </div>
                     <div class="form-group">
+                        <label for="parentName" style="font-size: revert">부서코드 <small class="text-danger">*</small></label>
+                        <input type="text" class="form-control" id="name" v-model="code" readonly>
+                    </div>
+                    <div class="form-group">
                         <label for="parentName" style="font-size: revert">부서명 <small class="text-danger">*</small></label>
                         <input type="text" class="form-control" id="name" v-model="name" :class="{'is-invalid': requiredCheck}">
                     </div>
@@ -44,6 +48,7 @@ Vue.component('department-update', {
         return {
             department: null,
             parentName: "",
+            code: "",
             name: "",
             remark: "",
             useYn: "",
@@ -85,7 +90,9 @@ Vue.component('department-update', {
         },
         initData(data) {
             this.department = data;
+
             this.parentName = data.parentName === null ? "-" : data.parentName;
+            this.code = data.code;
             this.name = data.name;
             this.remark = data.remark;
             this.useYn = data.useYn === "Y";
@@ -94,9 +101,9 @@ Vue.component('department-update', {
             const vm = this;
 
             const obj = {
-                departmentKey: vm.department.departmentKey,
+                code: vm.department.code,
                 name: vm.name,
-                parentKey: vm.department.parentKey,
+                parentCode: vm.department.parentCode,
                 depth: vm.department.depth,
                 remark: vm.remark,
                 useYn: vm.useYn === true ? "Y" : "N"

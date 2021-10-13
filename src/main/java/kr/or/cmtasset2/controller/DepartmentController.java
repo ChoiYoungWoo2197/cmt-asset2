@@ -5,10 +5,7 @@ import kr.or.cmtasset2.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/department")
@@ -22,25 +19,44 @@ public class DepartmentController {
         return departmentService.getDepartments();
     }
 
+    /*@GetMapping(value = {"/checkCode/{code}", "/checkCode"})
+    public String checkCode(@PathVariable(required = false, value = "code") String code) {
+        if(code == null) {
+            return "required";
+        } else {
+            Department department = departmentService.getDepartment(code);
+
+            return department == null ? "success" : "duplicate";
+        }
+    }*/
+
     @PostMapping
-    public void create(@ModelAttribute Department department) {
-        department.setCreateDate(new Date());
-        //구현해야됨
+    public String create(@ModelAttribute Department department) {
+        Department existDepartment = departmentService.getDepartment(department.getCode());
+
+        if(existDepartment == null) {
+            department.setCreateDate(new Date());
+            //구현해야됨
 //        department.setCreateId("");
 
-        departmentService.createDepartment(department);
+            departmentService.createDepartment(department);
+
+            return "success";
+        } else {
+            return "duplicate";
+        }
     }
 
-    @GetMapping(value = "/{departmentKey}")
-    public Department read(@PathVariable("departmentKey") int departmentKey) {
-        Department department = departmentService.getDepartment(departmentKey);
+    @GetMapping(value = "/{code}")
+    public Department read(@PathVariable("code") String code) {
+        Department department = departmentService.getDepartment(code);
 
         return department;
     }
 
-    @PutMapping(value = "/{departmentKey}")
-    public String update(@PathVariable("departmentKey") int departmentKey, @ModelAttribute Department department) {
-        List<Department> childDepartments = departmentService.getChildDepartments(departmentKey);
+    @PutMapping(value = "/{code}")
+    public String update(@PathVariable("code") String code, @ModelAttribute Department department) {
+        List<Department> childDepartments = departmentService.getChildDepartments(code);
 
         if("".equals(department.getName().trim()) || "".equals(department.getUseYn().trim())) {
             return "required";
@@ -53,16 +69,27 @@ public class DepartmentController {
         }
     }
 
-    @DeleteMapping(value = "/{departmentKey}")
-    public String delete(@PathVariable("departmentKey") int departmentKey) {
-        List<Department> childDepartments = departmentService.getChildDepartments(departmentKey);
+    @DeleteMapping(value = "/{code}")
+    public String delete(@PathVariable("code") String code) {
+        List<Department> childDepartments = departmentService.getChildDepartments(code);
 
         if(childDepartments.size() == 0) {
-            departmentService.deleteDepartment(departmentKey);
+            departmentService.deleteDepartment(code);
             return "success";
         } else {
             return "fail";
         }
+    }
+
+    @PostMapping(value = "/file-upload")
+    public Collection<Department> fileUpload(@RequestBody Collection<Department> departments) {
+        if(departments.size() > 0) {
+            return departmentService.fileUpload(departments);
+        } else {
+            return null;
+        }
+
+
     }
 
 }

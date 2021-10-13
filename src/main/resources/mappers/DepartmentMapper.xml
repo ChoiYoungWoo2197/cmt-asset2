@@ -9,25 +9,24 @@
     </select>
 
     <insert id="createDepartment" parameterType="Department">
-        INSERT INTO department(name, parentKey, depth, remark, useYn, createDate, createId)
-        VALUES (#{name}, #{parentKey}, #{depth}, #{remark}, #{useYn}, #{createDate}, #{createId})
+        INSERT INTO department(code, name, parentCode, remark, useYn, createDate, createId)
+        VALUES (#{code}, #{name}, #{parentCode}, #{remark}, #{useYn}, #{createDate}, #{createId})
     </insert>
 
-    <select id="getDepartment" resultType="Department" parameterType="int">
+    <select id="getDepartment" resultType="Department" parameterType="String">
         SELECT
-            c1.departmentKey,
+            c1.code,
             c1.name,
-            c1.parentKey,
+            c1.parentCode,
             c2.name AS parentName,
-            c1.depth,
             c1.remark,
             c1.useYn,
             c1.createDate,
             date_format(c1.createDate, '%Y년 %m월 %d일') AS createDateFormat
         FROM department AS c1
             LEFT JOIN department AS c2
-            ON c1.parentKey = c2.departmentKey
-        WHERE c1.departmentKey = #{departmentKey}
+            ON c1.parentCode = c2.code
+        WHERE c1.code = #{code}
     </select>
 
     <update id="updateDepartment" parameterType="Department">
@@ -38,20 +37,20 @@
             useYn = #{useYn},
             updateDate = #{updateDate},
             updateId = #{updateId}
-        WHERE departmentKey = #{departmentKey}
+        WHERE code = #{code}
     </update>
 
-    <update id="deleteDepartment" parameterType="int">
+    <update id="deleteDepartment" parameterType="String">
         UPDATE department
         SET
             useYn = "N"
-        WHERE departmentKey = #{departmentKey}
+        WHERE code = #{code}
     </update>
 
-    <select id="getChildDepartments" resultType="Department" parameterType="int">
+    <select id="getChildDepartments" resultType="Department" parameterType="String">
         SELECT *
         FROM category
-        WHERE parentKey = #{departmentKey}
+        WHERE parentCode = #{code}
     </select>
 
 </mapper>

@@ -13,6 +13,10 @@ Vue.component('department-read', {
                         <td class="border-top-0">{{parentName}}</td>
                     </tr>
                     <tr>
+                        <th scope="row">부서코드</th>
+                        <td>{{code}}</td>
+                    </tr>
+                    <tr>
                         <th scope="row">부서명</th>
                         <td>{{name}}</td>
                     </tr>
@@ -39,6 +43,7 @@ Vue.component('department-read', {
     data() {
         return {
             parentName: "",
+            code: "",
             name: "",
             remark: "",
             useYn: "",
@@ -72,6 +77,7 @@ Vue.component('department-read', {
         },
         initData(data) {
             this.parentName = data.parentName === null ? "-" : data.parentName;
+            this.code = data.code;
             this.name = data.name;
             this.remark = data.remark.replaceAll("\n", "<br>");
             this.useYn = data.useYn === "Y" ? "사용" : "미사용";
