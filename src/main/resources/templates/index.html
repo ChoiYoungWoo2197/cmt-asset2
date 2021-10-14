@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/common.css" />
 
+    <!--adminlte 테마-->
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
 
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/sleek.js"></script>
@@ -64,16 +72,36 @@
     <script src="/vue/authority/Update.js"></script>
     <script src="/vue/authority/Permission.js"></script>
 
+    <!--Layout-->
+    <script src="/vue/layout/MainHeader.js"></script>
+    <script src="/vue/layout/MainSidebar.js"></script>
+
     <!--file-->
     <script src="/vue/file/FileUploadModal.js"></script>
+
+    <!--adminlte 테마-->
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
 </head>
 
-<body>
-    <div id="app">
-<!--        <category></category>-->
-        <organization></organization>
-<!--        <company></company>-->
-<!--        <authority></authority>-->
+<body class="sidebar-mini">
+    <div id="app" class="wrapper">
+        <main-header></main-header>
+        <main-sidebar></main-sidebar>
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="container-fluid">
+                    <!--        <category></category>-->
+                    <organization></organization>
+                    <!--        <company></company>-->
+                    <!--        <authority></authority>-->
+
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script>
